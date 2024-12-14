@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_classement_path(@classement) %> |
+<%= link_to 'Back', classements_path %>
+<!-- app/views/classements/show.html.erb -->
+<h1>Ranking for Week <%= params[:week] %> of <%= params[:year] %></h1>
+
+<% if @classement %>
+  <% @classement.songs.each do |song| %>
+    <div>
+      <h2><%= song.title %></h2>
+      <iframe width="560" height="315" src="<%= song.youtube_url %>" frameborder="0" allowfullscreen></iframe>
+    </div>
+  <% end %>
+<% else %>
+  <p>No rankings found for this week and year.</p>
+<% end %>
+

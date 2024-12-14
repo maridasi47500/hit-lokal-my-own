@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<!-- app/views/classements/index.html.erb -->
+<h1>Select Week and Year</h1>
+<%= form_tag classement_path, method: :get do %>
+  <div>
+    <%= label_tag :week, "Select Week" %>
+    <%= select_tag :week, options_for_select(@weeks) %>
+  </div>
+  <div>
+    <%= label_tag :year, "Select Year" %>
+    <%= select_tag :year, options_for_select(@years) %>
+  </div>
+  <div>
+    <%= submit_tag "Show Ranking" %>
+  </div>
+<% end %>
+<h1>Ranking for Week <%= params[:week] %> of <%= params[:year] %></h1>
+
+<% if @classement.length > 0 %>
+  <% @classement.each do |song| %>
+    <div>
+      <h2><%= song.chanson.title %></h2>
+      <iframe width="560" height="315" src="<%= song.chanson.url %>" frameborder="0" allowfullscreen></iframe>
+    </div>
+  <% end %>
+<% else %>
+  <p>No rankings found for this week and year.</p>
+<% end %>
+
+
